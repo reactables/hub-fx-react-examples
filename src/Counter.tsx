@@ -1,4 +1,4 @@
-import { Reducer, Action, Hub } from '@hub-fx/core';
+import { Reducer, Action } from '@hub-fx/core';
 import { useHub } from './Hooks/useHub';
 import { useStore } from './Hooks/useStore';
 
@@ -21,12 +21,12 @@ const reducer: Reducer<{ count: number }> = (state = { count: 0 }, action) => {
   }
 };
 
-function Counter({ hub }: { hub?: Hub }) {
-  // Initialize a hub or provide one from an ancestor component
-  const hubRef = useHub(hub);
+function Counter() {
+  // Initialize a hub;
+  const hub = useHub();
 
   // Bind React state to store observable
-  const state = useStore(hubRef, { reducer });
+  const state = useStore(hub, { reducer });
 
   return (
     <>
@@ -35,12 +35,12 @@ function Counter({ hub }: { hub?: Hub }) {
         Count: {state?.count}
         <br />
         <br />
-        <button type="button" onClick={() => hubRef.dispatch(increment())}>
+        <button type="button" onClick={() => hub.dispatch(increment())}>
           Increment
         </button>
         <br />
         <br />
-        <button type="button" onClick={() => hubRef.dispatch(reset())}>
+        <button type="button" onClick={() => hub.dispatch(reset())}>
           Reset Counter
         </button>
       </div>

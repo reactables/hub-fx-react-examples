@@ -24,7 +24,6 @@ const reducer: Reducer<{ count: number }> = (state = { count: 0 }, action) => {
 function Counter({ hub }: { hub?: Hub }) {
   // Initialize a hub or provide one from an ancestor component
   const hubRef = useHub(hub);
-  const { dispatch } = hubRef;
 
   // Bind React state to store observable
   const state = useStore(hubRef, { reducer });
@@ -36,12 +35,12 @@ function Counter({ hub }: { hub?: Hub }) {
         Count: {state?.count}
         <br />
         <br />
-        <button type="button" onClick={() => dispatch(increment())}>
+        <button type="button" onClick={() => hubRef.dispatch(increment())}>
           Increment
         </button>
         <br />
         <br />
-        <button type="button" onClick={() => dispatch(reset())}>
+        <button type="button" onClick={() => hubRef.dispatch(reset())}>
           Reset Counter
         </button>
       </div>

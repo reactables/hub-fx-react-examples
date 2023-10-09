@@ -10,6 +10,7 @@ export class TicketService {
   };
 
   static getPrice({ event, qty }: FetchPricePayload) {
+    console.log('fired');
     return of(TicketService.prices[event] * qty).pipe(delay(1000));
   }
 }

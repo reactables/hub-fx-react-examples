@@ -1,9 +1,11 @@
+import { useRef } from 'react';
 import { switchMap, map } from 'rxjs/operators';
 import { Action, Reducer, HubFactory, Hub } from '@hub-fx/core';
 import { Observable } from 'rxjs';
 import { EventTypes, FetchPricePayload } from './Models/EventTypes';
 import { TicketService } from './ticket.service';
 import { useHub } from './Hooks/useHub';
+import { useObservable } from './Hooks/useObservable';
 
 // Actions
 export const SELECT_EVENT = 'SELECT_EVENT';
@@ -124,14 +126,60 @@ const buildObservables = (
         map(({ qty, selectedEvent: event }) => fetchPrice({ qty, event }, getPrice))
       ),
     ],
-  }).store({ reducer: priceReducer });
+  }).store({ reducer: priceReducer, debug: true });
 
   return { control$, priceInfo$ };
 };
 
 const EventTickets = () => {
   const hub = useHub();
-  return <></>;
+  const { control$, priceInfo$ } = useRef(buildObservables(hub, TicketService.getPrice)).current;
+  const control = useObservable(control$);
+  const priceInfo = useObservable(priceInfo$);
+  console.log(priceInfo);
+
+  return (
+    <>
+      <h1>Event Prices!</h1>
+      <div className="event-tickets">
+        {control && (
+          <>
+            <div className="event-tickets__event-select">
+              <label>Select an Event: </label>
+              <select
+                id="event-selection"
+                value={control.selectedEvent}
+                onChange={(e) => hub.dispatch(selectEvent(e.currentTarget.value as EventTypes))}
+              >
+                <option value="Chili Cook Off">Chili Cook Off</option>
+                <option value="Grammar Rodeo">Grammar Rodeo</option>
+                <option value="Itchy And Scratchy Movie">Itchy And Scratchy Movie</option>
+              </select>
+            </div>
+            <div className="event-tickets__qty">
+              <label>Qty:</label>
+              <input
+                id="qty"
+                type="number"
+                onChange={(e) => hub.dispatch(setQty(+e.currentTarget.value))}
+                value={control.qty}
+              />
+            </div>
+          </>
+        )}
+        {priceInfo && (
+          <>
+            <div className="event-tickets__price-info">
+              <span>Calculating ...</span>
+              <div>
+                <b>Price Total: ${priceInfo.price}</b>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default EventTickets;

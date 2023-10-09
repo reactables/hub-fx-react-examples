@@ -1,12 +1,11 @@
-import { Reducer } from '@hub-fx/core';
-import { useHub } from './Hooks/useHub';
+import { HubFactory, Reducer } from '@hub-fx/core';
 import { useStore } from './Hooks/useStore';
 import './App.css';
 
 const reducer: Reducer<number> = (state = 0) => state;
 
-function App({ hub = useHub() }) {
-  const state = useStore(hub, { reducer });
+function App() {
+  const state = useStore(HubFactory(), { reducer });
   return (
     <div className="App">
       <h1>{state}</h1>

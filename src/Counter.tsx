@@ -22,6 +22,7 @@ const reducer: Reducer<{ count: number }> = (state = { count: 0 }, action) => {
 };
 
 function Counter({ hub }: { hub?: Hub }) {
+  // Initialize a hub or provide one from an ancestor component
   const hubRef = useHub(hub);
   const { dispatch } = hubRef;
 

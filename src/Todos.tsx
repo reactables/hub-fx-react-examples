@@ -4,7 +4,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TodoService } from './todo.service';
 import { useStore } from './Hooks/useStore';
-import { useHub} from './Hooks/useHub';
+import { useHub } from './Hooks/useHub';
 
 // Actions
 const SEND_TODO_STATUS_UPDATE = 'SEND_TODO_STATUS_UPDATE';
@@ -93,34 +93,40 @@ const reducer: Reducer<TodosState> = (state = initialState, action) => {
   return state;
 };
 
-const Todos = () =>{
+const Todos = () => {
   const hub = useHub();
+  const state = useStore(hub, { reducer });
 
-
-return (<>
-
-
-<h1>Todos</h1>
-<div className="todos">
-  {state.todos.map}
-  <ng-container *ngFor="let todo of state.todos">
-    <div class="todo">
-      {{ todo.description }}
-      <div class="todo__control">
-        <div *ngIf="todo.updating">Updating...</div>
-        <select
-          [ngModel]="todo.status"
-          (change)="statusChange(todo.id, $event)"
-        >
-          <option [value]="'in progress'">In Progress</option>
-          <option [value]="'incomplete'">Incomplete</option>
-          <option [value]="'done'">Done</option>
-        </select>
+  return (
+    <>
+      <h1>Todos</h1>
+      <div className="todos">
+        {state.todos.map((todo) => (
+          <>
+            <div className="todo">
+              {todo.description}
+              <div className="todo__control">
+                {todo.updating && <div>Updating...</div>}
+                <select
+                  value={todo.status}
+                  onChange={(event) =>
+                    hub.dispatch(
+                      sendTodoStatusUpdate(
+                        { todoId: todo.id, status: event.currentTarget.value as TodoStatus },
+                        TodoService.updateTodo
+                      )
+                    )
+                  }
+                >
+                  <option value="in progress">In Progress</option>
+                  <option value="incomplete">Incomplete</option>
+                  <option value="done">Done</option>
+                </select>
+              </div>
+            </div>
+          </>
+        ))}
       </div>
-    </div>
-  </ng-container>
-</div>
-
-</>)
-
-} 
+    </>
+  );
+};

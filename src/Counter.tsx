@@ -28,7 +28,7 @@ function Counter({ hub }: { hub?: Hub }) {
   const state = useStore(hubRef, { reducer });
   return (
     <>
-      <h1>Counter</h1>
+      <h1>Counter Example</h1>
       <div>
         Count: {state?.count}
         <br />

@@ -1,14 +1,10 @@
-import { HubFactory, Reducer } from '@hub-fx/core';
-import { useStore } from './Hooks/useStore';
 import './App.css';
-
-const reducer: Reducer<number> = (state = 0) => state;
+import Todos from './Todos';
 
 function App() {
-  const state = useStore(HubFactory(), { reducer });
   return (
     <div className="App">
-      <h1>{state}</h1>
+      <Todos />
     </div>
   );
 }

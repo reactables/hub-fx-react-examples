@@ -94,7 +94,10 @@ const reducer: Reducer<TodosState> = (state = initialState, action) => {
 };
 
 const Todos = () => {
+  // Initialize Hub
   const hub = useHub();
+
+  // Bind React state to store observable
   const state = useStore(hub, { reducer });
 
   return (

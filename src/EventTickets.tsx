@@ -126,7 +126,7 @@ const buildObservables = (
         map(({ qty, selectedEvent: event }) => fetchPrice({ qty, event }, getPrice))
       ),
     ],
-  }).store({ reducer: priceReducer, debug: true });
+  }).store({ reducer: priceReducer });
 
   return { control$, priceInfo$ };
 };

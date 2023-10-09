@@ -1,24 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Reducer } from '@hub-fx/core';
+import { useHub } from './Hooks/useHub';
+import { useObservable } from './Hooks/useObservable';
 import './App.css';
 
-function App() {
+const reducer: Reducer<number> = (state = 0) => state;
+
+function App({ hub = useHub() }) {
+  const state = useObservable(hub.store({ reducer }));
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{state}</h1>
     </div>
   );
 }

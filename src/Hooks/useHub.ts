@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { HubFactory } from '@hub-fx/core';
+import { HubFactory, Hub, HubConfig } from '@hub-fx/core';
 
-export const useHub = () => {
-  return useRef(HubFactory()).current;
+export const useHub = (hub?: Hub, config?: HubConfig) => {
+  return useRef(hub || HubFactory(config)).current;
 };

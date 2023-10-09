@@ -26,7 +26,9 @@ function Counter({ hub }: { hub?: Hub }) {
   const hubRef = useHub(hub);
   const { dispatch } = hubRef;
 
+  // Bind React state to store observable
   const state = useStore(hubRef, { reducer });
+
   return (
     <>
       <h1>Counter Example</h1>

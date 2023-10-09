@@ -20,7 +20,7 @@ export const useStore = <T>(hub: Hub, storeConfig: StoreConfig<T>) => {
     const unsubscribe = subscription.unsubscribe.bind(subscription) as () => void;
 
     return unsubscribe;
-  });
+  }, [currentObs$]);
 
   return state;
 };

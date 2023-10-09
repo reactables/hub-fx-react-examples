@@ -3,7 +3,7 @@ import { UpdateTodoPayload, Todo, TodoStatus } from './Models/Todos';
 import { switchMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TodoService } from './todo.service';
-import { useStore } from './Hooks/useStore';
+import { useObservable } from './Hooks/useObservable';
 import { useHub } from './Hooks/useHub';
 
 // Actions
@@ -98,13 +98,13 @@ const Todos = () => {
   const hub = useHub();
 
   // Bind React state to store observable
-  const state = useStore(hub, { reducer });
+  const state = useObservable(hub.store({ reducer }));
 
   return (
     <>
       <h1>Todos</h1>
       <div className="todos">
-        {state.todos.map((todo) => (
+        {state?.todos.map((todo) => (
           <>
             <div className="todo">
               {todo.description}

@@ -1,6 +1,6 @@
 import { Reducer, Action } from '@hub-fx/core';
 import { useHub } from './Hooks/useHub';
-import { useObservable } from './Hooks/useObservable';
+import { useStore } from './Hooks/useStore';
 import './App.css';
 
 // Actions
@@ -23,7 +23,7 @@ const reducer: Reducer<{ count: number }> = (state = { count: 0 }, action) => {
 };
 
 function App({ hub = useHub() }) {
-  const state = useObservable(hub.store({ reducer }));
+  const state = useStore(hub, { reducer });
   return (
     <>
       <h1>Counter</h1>

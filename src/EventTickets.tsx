@@ -133,10 +133,9 @@ const buildObservables = (
 
 const EventTickets = () => {
   const hub = useHub();
-  const { control$, priceInfo$ } = useRef(buildObservables(hub, TicketService.getPrice)).current;
+  const { control$, priceInfo$ } = buildObservables(hub, TicketService.getPrice);
   const control = useObservable(control$);
   const priceInfo = useObservable(priceInfo$);
-  console.log(priceInfo);
 
   return (
     <>

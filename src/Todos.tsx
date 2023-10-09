@@ -106,7 +106,7 @@ const Todos = () => {
             <div className="todo">
               {todo.description}
               <div className="todo__control">
-                {todo.updating && <div>Updating...</div>}
+                {todo.updating && <div className="todo__updating">Updating...</div>}
                 <select
                   value={todo.status}
                   onChange={(event) =>

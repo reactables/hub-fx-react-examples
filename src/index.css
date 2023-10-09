@@ -9,10 +9,13 @@
 .todo__control {
   margin-left: auto;
   display: flex;
-  width: 100%;
 }
 
 select,
 .todo__updating {
   margin-left: auto;
+}
+
+.todo__updating {
+  margin-right: 24px;
 }

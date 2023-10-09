@@ -3,6 +3,8 @@ import { UpdateTodoPayload, Todo, TodoStatus } from './Models/Todos';
 import { switchMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TodoService } from './todo.service';
+import { useStore } from './Hooks/useStore';
+import { useHub} from './Hooks/useHub';
 
 // Actions
 const SEND_TODO_STATUS_UPDATE = 'SEND_TODO_STATUS_UPDATE';
@@ -90,3 +92,35 @@ const reducer: Reducer<TodosState> = (state = initialState, action) => {
   }
   return state;
 };
+
+const Todos = () =>{
+  const hub = useHub();
+
+
+return (<>
+
+
+<h1>Todos</h1>
+<div className="todos">
+  {state.todos.map}
+  <ng-container *ngFor="let todo of state.todos">
+    <div class="todo">
+      {{ todo.description }}
+      <div class="todo__control">
+        <div *ngIf="todo.updating">Updating...</div>
+        <select
+          [ngModel]="todo.status"
+          (change)="statusChange(todo.id, $event)"
+        >
+          <option [value]="'in progress'">In Progress</option>
+          <option [value]="'incomplete'">Incomplete</option>
+          <option [value]="'done'">Done</option>
+        </select>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+</>)
+
+} 

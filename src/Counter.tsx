@@ -1,6 +1,6 @@
 import { Reducer, Action } from '@hub-fx/core';
 import { useHub } from './Hooks/useHub';
-import { useStore } from './Hooks/useStore';
+import { useObservable } from './Hooks/useObservable';
 
 // Actions
 const INCREMENT = 'INCREMENT';
@@ -26,7 +26,7 @@ function Counter() {
   const hub = useHub();
 
   // Bind React state to store observable
-  const state = useStore(hub, { reducer });
+  const state = useObservable(hub.store({ reducer }));
 
   return (
     <>

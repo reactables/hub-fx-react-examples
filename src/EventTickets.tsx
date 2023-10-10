@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { switchMap, map } from 'rxjs/operators';
 import { Action, Reducer, HubFactory, Hub } from '@hub-fx/core';
 import { Observable } from 'rxjs';

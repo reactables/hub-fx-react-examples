@@ -168,10 +168,13 @@ const EventTickets = () => {
         {priceInfo && (
           <>
             <div className="event-tickets__price-info">
-              <span>Calculating ...</span>
-              <div>
-                <b>Price Total: ${priceInfo.price}</b>
-              </div>
+              {priceInfo.calculating ? (
+                <span>Calculating ...</span>
+              ) : (
+                <div>
+                  <b>Price Total: ${priceInfo.price}</b>
+                </div>
+              )}
             </div>
           </>
         )}

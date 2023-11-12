@@ -1,5 +1,5 @@
 import { Counter as Counter$ } from '@hub-fx/examples';
-import { useReactable } from './Hooks/useReactable';
+import { useReactable } from '@hub-fx/react-helpers';
 
 // See for implementation
 // https://github.com/hub-fx/hub-fx/tree/main/packages/examples/src/Counter

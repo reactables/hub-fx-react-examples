@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+// React strict mode has bugs with clean up with refs so it breaks the useReactable hook as of now
+// See Bug: https://github.com/facebook/react/issues/26315
+// See Bug: https://github.com/facebook/react/issues/24670
+
 root.render(
   // <React.StrictMode>
   <App />

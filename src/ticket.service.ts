@@ -1,6 +1,6 @@
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { EventTypes, FetchPricePayload } from './Models/EventTypes';
+import { EventTypes, FetchPricePayload } from '@hub-fx/examples';
 
 export class TicketService {
   static prices = {

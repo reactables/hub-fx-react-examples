@@ -1,8 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Reactable } from '@hub-fx/core';
 
 export const useReactable = <T, S>(reactable: Reactable<T, S>) => {
-  const { state$, actions } = useRef(reactable).current;
+  // TODO: should use useRef here but bug with React Strict Mode
+  // See: https://github.com/facebook/react/issues/26315
+
+  const [{ state$, actions }] = useState(reactable);
+
   const [state, setState] = useState<T>();
 
   useEffect(() => {

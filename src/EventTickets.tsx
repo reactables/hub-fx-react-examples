@@ -2,6 +2,9 @@ import { EventTickets as EventTickets$, EventTypes } from '@hub-fx/examples';
 import { TicketService } from './ticket.service';
 import { useReactable } from './Hooks/useReactable';
 
+// See for implementation
+// https://github.com/hub-fx/hub-fx/tree/main/packages/examples/src/EventTickets
+
 const EventTickets = () => {
   const {
     state,

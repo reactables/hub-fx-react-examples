@@ -1,6 +1,9 @@
 import { TodoStatus, UpdateTodoPayload, TodoUpdates as TodoUpdates$ } from '@hub-fx/examples';
 import { useReactable } from './Hooks/useReactable';
 
+// See for implementation
+// https://github.com/hub-fx/hub-fx/tree/main/packages/examples/src/TodoUpdates
+
 const mockApi = (payload: UpdateTodoPayload) =>
   new Promise<UpdateTodoPayload>((resolve) => {
     setTimeout(() => resolve(payload), 2000);

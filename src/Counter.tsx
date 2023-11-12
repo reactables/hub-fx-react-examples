@@ -1,6 +1,9 @@
 import { Counter as Counter$ } from '@hub-fx/examples';
 import { useReactable } from './Hooks/useReactable';
 
+// See for implementation
+// https://github.com/hub-fx/hub-fx/tree/main/packages/examples/src/Counter
+
 function Counter() {
   const {
     state,

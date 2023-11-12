@@ -1,32 +1,11 @@
-import { Reducer, Action } from '@hub-fx/core';
-import { useHub } from './Hooks/useHub';
-import { useObservable } from './Hooks/useObservable';
-
-// Actions
-const INCREMENT = 'INCREMENT';
-const increment = (): Action => ({ type: INCREMENT });
-
-const RESET = 'RESET';
-const reset = (): Action => ({ type: RESET });
-
-// Reducer function to handle state updates
-const reducer: Reducer<{ count: number }> = (state = { count: 0 }, action) => {
-  switch (action?.type) {
-    case INCREMENT:
-      return { count: state.count + 1 };
-    case RESET:
-      return { count: 0 };
-    default:
-      return state;
-  }
-};
+import { Counter as Counter$ } from '@hub-fx/examples';
+import { useReactable } from './Hooks/useReactable';
 
 function Counter() {
-  // Initialize a hub;
-  const hub = useHub();
-
-  // Bind React state to store observable
-  const state = useObservable(hub.store({ reducer }));
+  const {
+    state,
+    actions: { increment, reset },
+  } = useReactable(Counter$());
 
   return (
     <>
@@ -35,12 +14,12 @@ function Counter() {
         Count: {state?.count}
         <br />
         <br />
-        <button type="button" onClick={() => hub.dispatch(increment())}>
+        <button type="button" onClick={increment}>
           Increment
         </button>
         <br />
         <br />
-        <button type="button" onClick={() => hub.dispatch(reset())}>
+        <button type="button" onClick={reset}>
           Reset Counter
         </button>
       </div>

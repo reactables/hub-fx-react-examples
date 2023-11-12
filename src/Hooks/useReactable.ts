@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Reactable } from '@hub-fx/core';
 
-// Currently only working properly when not in Strict Mode
 export const useReactable = <T, S>(reactable: Reactable<T, S>) => {
   const { state$, actions } = useRef(reactable).current;
   const [state, setState] = useState<T>();

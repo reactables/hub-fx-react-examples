@@ -1,20 +1,20 @@
 import { useEffect, useState, useRef } from 'react';
-import { Observable } from 'rxjs';
+import { Reactable } from '@hub-fx/core';
 
 // Currently only working properly when not in Strict Mode
-export const useObservable = <T>(obs$: Observable<T>) => {
-  const currentObs$ = useRef(obs$).current;
+export const useReactable = <T, S>(reactable: Reactable<T, S>) => {
+  const { state$, actions } = useRef(reactable).current;
   const [state, setState] = useState<T>();
 
   useEffect(() => {
-    const subscription = currentObs$.subscribe((result) => {
+    const subscription = state$.subscribe((result) => {
       setState(result);
     });
 
     const unsubscribe = subscription.unsubscribe.bind(subscription) as () => void;
 
     return unsubscribe;
-  }, [currentObs$]);
+  }, [state$]);
 
-  return state;
+  return { state, actions };
 };

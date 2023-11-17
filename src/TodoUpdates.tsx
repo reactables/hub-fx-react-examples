@@ -1,4 +1,4 @@
-import { TodoStatus, UpdateTodoPayload, TodoUpdates as TodoUpdates$ } from '@hub-fx/examples';
+import { TodoStatus, UpdateTodoPayload, RxTodoUpdates } from '@hub-fx/examples';
 import { useReactable } from '@hub-fx/react-helpers';
 
 // See for implementation
@@ -13,7 +13,7 @@ const TodoUpdates = () => {
   const {
     state,
     actions: { sendTodoStatusUpdate },
-  } = useReactable(TodoUpdates$(mockApi));
+  } = useReactable(RxTodoUpdates(mockApi));
 
   return (
     <>

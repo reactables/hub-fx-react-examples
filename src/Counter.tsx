@@ -1,4 +1,4 @@
-import { Counter as Counter$ } from '@hub-fx/examples';
+import { RxCounter } from '@hub-fx/examples';
 import { useReactable } from '@hub-fx/react-helpers';
 
 // See for implementation
@@ -8,7 +8,7 @@ function Counter() {
   const {
     state,
     actions: { increment, reset },
-  } = useReactable(Counter$());
+  } = useReactable(RxCounter());
 
   return (
     <>

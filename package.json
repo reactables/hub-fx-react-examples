@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@hub-fx/core": "^0.0.2-alpha.3",
-    "@hub-fx/examples": "^0.1.0-alpha.3",
-    "@hub-fx/react-helpers": "^0.0.2-alpha.4",
+    "@reactables/core": "^0.4.0-alpha.1",
+    "@reactables/examples": "^0.4.0-alpha.1",
+    "@reactables/react-helpers": "^0.4.0-alpha.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
